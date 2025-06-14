@@ -1,0 +1,64 @@
+[
+{
+    "model": "lms.course",
+    "pk": 1,
+    "fields": {
+        "title": "Python разработчик",
+        "description": "Полный курс на Python разработчика",
+        "thumbnail": ""
+    }
+},
+{
+    "model": "lms.course",
+    "pk": 2,
+    "fields": {
+        "title": "Java разработчик (junior)",
+        "description": "Курс Java разработчик для начинающих",
+        "thumbnail": ""
+    }
+},
+{
+    "model": "lms.lesson",
+    "pk": 1,
+    "fields": {
+        "title": "Введение в Python",
+        "description": "Начальный урок по python разработке",
+        "thumbnail": "",
+        "video": null,
+        "course": 1
+    }
+},
+{
+    "model": "lms.lesson",
+    "pk": 2,
+    "fields": {
+        "title": "Списки, кортежи, словари",
+        "description": "Приводится синтаксис и описание работы коллекций",
+        "thumbnail": "",
+        "video": null,
+        "course": 1
+    }
+},
+{
+    "model": "lms.lesson",
+    "pk": 3,
+    "fields": {
+        "title": "Введение в Java",
+        "description": "Начальный урок по Java",
+        "thumbnail": "",
+        "video": null,
+        "course": 2
+    }
+},
+{
+    "model": "lms.lesson",
+    "pk": 4,
+    "fields": {
+        "title": "Зачем нужна Java?",
+        "description": "В уроке приводится описание сфер, где применятся Java.",
+        "thumbnail": "",
+        "video": null,
+        "course": 2
+    }
+}
+]

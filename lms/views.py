@@ -50,4 +50,5 @@ class LessonDeleteAPIView(DestroyAPIView):
     """
     API удаления урока.
     """
+    queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
