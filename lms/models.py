@@ -1,3 +1,62 @@
 from django.db import models
 
-# Create your models here.
+
+class Course(models.Model):
+    """
+    Модель обучающего курса.
+    """
+
+    title = models.CharField(
+        max_length=150,
+        verbose_name="Название"
+    )
+    description = models.TextField(
+        verbose_name="Описание"
+    )
+    thumbnail = models.ImageField(
+        upload_to="courses/thumbnails/",
+        verbose_name="Превьюшка",
+        blank=True, null=True
+    )
+
+    class Meta:
+        verbose_name = "Курс"
+        verbose_name_plural = "Курсы"
+
+    def __str__(self):
+        return self.title
+
+
+class Lesson(models.Model):
+    """
+    Модель урока.
+    """
+    title = models.CharField(
+        max_length=150,
+        verbose_name="Название"
+    )
+    description = models.TextField(
+        verbose_name="Описание"
+    )
+    thumbnail = models.ImageField(
+        upload_to="courses/thumbnails/",
+        verbose_name="Превьюшка",
+        blank=True, null=True
+    )
+    video = models.URLField(
+        verbose_name="Ссылка на видео",
+        blank=True, null=True
+    )
+    course = models.ForeignKey(
+        Course,
+        on_delete=models.CASCADE,
+        verbose_name="Курс",
+        related_name="course"
+    )
+
+    class Meta:
+        verbose_name = "Курс"
+        verbose_name_plural = "Курсы"
+
+    def __str__(self):
+        return self.title
