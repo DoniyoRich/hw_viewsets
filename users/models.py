@@ -2,6 +2,10 @@ from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
+from config.constants import PAYMENT_TYPES
+from config.settings import AUTH_USER_MODEL
+from lms.models import Course, Lesson
+
 
 class CustomUserManager(BaseUserManager):
     def create_superuser(self, email, password=None, **extra_fields):
@@ -62,3 +66,23 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.email
+
+
+class Payment(models.Model):
+    """
+    Модель платежей.
+    """
+    client = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="Плательщик")
+    date_paid = models.DateField(verbose_name="Дата платежа")
+    course_paid = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name="Оплаченный курс")
+    lesson_paid = models.ForeignKey(Lesson, on_delete=models.CASCADE, verbose_name="Оплаченный урок")
+    amount = models.PositiveIntegerField(verbose_name="Сумма оплаты")
+    type = models.CharField(max_length=30, choices=PAYMENT_TYPES, verbose_name="Способ оплаты")
+
+    class Meta:
+        verbose_name = "Платеж"
+        verbose_name_plural = "Платежи"
+        ordering = ["client", "date_paid", "amount"]
+
+    def __str__(self):
+        return f"Клиент {self.client}. Оплата - {self.type} на сумму {self.amount}."

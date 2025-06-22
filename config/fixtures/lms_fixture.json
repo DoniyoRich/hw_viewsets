@@ -12,8 +12,17 @@
     "model": "lms.course",
     "pk": 2,
     "fields": {
-        "title": "Java разработчик (junior)",
-        "description": "Курс Java разработчик для начинающих",
+        "title": "Java разработчик (middle)",
+        "description": "Курс Java разработчик для продвинутых",
+        "thumbnail": ""
+    }
+},
+{
+    "model": "lms.course",
+    "pk": 4,
+    "fields": {
+        "title": "C++ разработчик",
+        "description": "Полный курс на C++ разработчика",
         "thumbnail": ""
     }
 },
@@ -23,17 +32,6 @@
     "fields": {
         "title": "Введение в Python",
         "description": "Начальный урок по python разработке",
-        "thumbnail": "",
-        "video": null,
-        "course": 1
-    }
-},
-{
-    "model": "lms.lesson",
-    "pk": 2,
-    "fields": {
-        "title": "Списки, кортежи, словари",
-        "description": "Приводится синтаксис и описание работы коллекций",
         "thumbnail": "",
         "video": null,
         "course": 1
@@ -59,6 +57,17 @@
         "thumbnail": "",
         "video": null,
         "course": 2
+    }
+},
+{
+    "model": "lms.lesson",
+    "pk": 5,
+    "fields": {
+        "title": "Введение в C++",
+        "description": "Начальный урок по C++ разработке",
+        "thumbnail": "",
+        "video": null,
+        "course": 4
     }
 }
 ]
