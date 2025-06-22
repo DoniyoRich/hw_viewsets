@@ -11,7 +11,18 @@ class UserSerializer(ModelSerializer):
 
     class Meta:
         model = CustomUser
-        fields = ("id", "email")
+        # fields = ("id", "email", "avatar", "phone_number", "city")
+        fields = "__all__"
+
+
+class UserSerializerLimited(ModelSerializer):
+    """
+    Сериализатор для модели пользователя, поля только id, email, avatar, city, phone.
+    """
+
+    class Meta:
+        model = CustomUser
+        fields = ("id", "email", "avatar", "phone_number", "city")
 
 
 class PaymentSerializer(ModelSerializer):
