@@ -4,13 +4,13 @@
     "pk": 1,
     "fields": {
         "password": "pbkdf2_sha256$1000000$UXM7CNW15nyWYvGrQLYBSl$b2nFPM5f4wcFea+LcaWNYjtzoKrsG6+121xheYSrNs4=",
-        "last_login": "2025-06-18T19:48:27.705Z",
+        "last_login": "2025-06-22T17:21:10.594Z",
         "is_superuser": true,
         "first_name": "",
         "last_name": "",
         "is_staff": true,
         "is_active": true,
-        "date_joined": "2025-06-14T12:08:42.490Z",
+        "date_joined": "2025-06-14T12:08:42Z",
         "email": "admin@mail.com",
         "avatar": "",
         "phone_number": null,
@@ -41,114 +41,44 @@
 },
 {
     "model": "users.customuser",
-    "pk": 3,
+    "pk": 14,
     "fields": {
-        "password": "pbkdf2_sha256$1000000$PYL4AuaAHjnihJkzVBe2RH$RaveXqek69DH8C9tzhQPDDIePx8vvGrFQep1Zv9UJoA=",
+        "password": "pbkdf2_sha256$1000000$PuA8vkMiu9ncF57RmEhhwM$60uxFi4YSwhrSt9hHEs8wumVukfhjYDtn2Qwx3Kw2Wk=",
         "last_login": null,
         "is_superuser": false,
         "first_name": "",
         "last_name": "",
-        "is_staff": false,
+        "is_staff": true,
         "is_active": true,
-        "date_joined": "2025-06-18T19:41:16.836Z",
-        "email": "user2@user2.com",
+        "date_joined": "2025-06-22T13:08:38Z",
+        "email": "manager1@company.com",
         "avatar": "",
-        "phone_number": null,
+        "phone_number": "892680808080",
         "city": null,
-        "groups": [],
+        "groups": [
+            1
+        ],
         "user_permissions": []
     }
 },
 {
     "model": "users.customuser",
-    "pk": 4,
+    "pk": 17,
     "fields": {
-        "password": "pbkdf2_sha256$1000000$AYcxzW0gyJBOgrVbh4oE8r$3clO3Z6gOacQ8kM2Ra1g89atZGOiJ7PPafCQSktXF9E=",
-        "last_login": null,
-        "is_superuser": false,
+        "password": "pbkdf2_sha256$1000000$0cLq3UfvmsAWppt4h71ytn$h0YUUyi3PzDXCMXUdqHVv8f6NiSF4y8apSNx6kh87VY=",
+        "last_login": "2025-06-22T16:35:26.384Z",
+        "is_superuser": true,
         "first_name": "",
         "last_name": "",
-        "is_staff": false,
+        "is_staff": true,
         "is_active": true,
-        "date_joined": "2025-06-18T19:41:46.710Z",
-        "email": "user3@user3.com",
+        "date_joined": "2025-06-22T16:35:04.943Z",
+        "email": "admin@admin.com",
         "avatar": "",
         "phone_number": null,
         "city": null,
         "groups": [],
         "user_permissions": []
-    }
-},
-{
-    "model": "users.payment",
-    "pk": 2,
-    "fields": {
-        "client": 1,
-        "date_paid": "2025-06-18",
-        "course_paid": 1,
-        "lesson_paid": 1,
-        "amount": 65000,
-        "type": "Наличные"
-    }
-},
-{
-    "model": "users.payment",
-    "pk": 3,
-    "fields": {
-        "client": 2,
-        "date_paid": "2025-02-10",
-        "course_paid": 2,
-        "lesson_paid": 1,
-        "amount": 90000,
-        "type": "Перевод на счет"
-    }
-},
-{
-    "model": "users.payment",
-    "pk": 5,
-    "fields": {
-        "client": 1,
-        "date_paid": "2025-05-14",
-        "course_paid": 1,
-        "lesson_paid": 1,
-        "amount": 65000,
-        "type": "Наличные"
-    }
-},
-{
-    "model": "users.payment",
-    "pk": 6,
-    "fields": {
-        "client": 2,
-        "date_paid": "2025-01-20",
-        "course_paid": 2,
-        "lesson_paid": 1,
-        "amount": 90000,
-        "type": "Перевод на счет"
-    }
-},
-{
-    "model": "users.payment",
-    "pk": 7,
-    "fields": {
-        "client": 3,
-        "date_paid": "2025-06-18",
-        "course_paid": 4,
-        "lesson_paid": 3,
-        "amount": 80000,
-        "type": "Перевод на счет"
-    }
-},
-{
-    "model": "users.payment",
-    "pk": 8,
-    "fields": {
-        "client": 4,
-        "date_paid": "2025-04-09",
-        "course_paid": 2,
-        "lesson_paid": 5,
-        "amount": 100000,
-        "type": "Наличные"
     }
 }
 ]

@@ -1,5 +1,7 @@
 from django.db import models
 
+from config import settings
+
 
 class Course(models.Model):
     """
@@ -18,6 +20,8 @@ class Course(models.Model):
         verbose_name="Превьюшка",
         blank=True, null=True
     )
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, verbose_name="Пользователь",
+                              null=True, blank=True)
 
     class Meta:
         verbose_name = "Курс"
@@ -53,6 +57,8 @@ class Lesson(models.Model):
         verbose_name="Курс",
         related_name="lessons"
     )
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, verbose_name="Пользователь",
+                              null=True, blank=True)
 
     class Meta:
         verbose_name = "Урок"

@@ -1,9 +1,14 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter, SearchFilter
-from rest_framework.generics import ListAPIView, UpdateAPIView, CreateAPIView, RetrieveAPIView, DestroyAPIView
+from rest_framework.generics import (CreateAPIView, DestroyAPIView,
+                                     ListAPIView, RetrieveAPIView,
+                                     UpdateAPIView)
+from rest_framework.permissions import AllowAny
 
-from users.models import Payment, CustomUser
-from users.serializers import PaymentSerializer, UserSerializer, UserSerializerLimited
+from users.models import CustomUser, Payment
+from users.permissions import IsModerator, IsOwner
+from users.serializers import (PaymentSerializer, UserSerializer,
+                               UserSerializerLimited)
 
 
 class UserRegisterView(CreateAPIView):
@@ -12,6 +17,7 @@ class UserRegisterView(CreateAPIView):
     """
     serializer_class = UserSerializer
     queryset = CustomUser.objects.all()
+    permission_classes = [AllowAny]
 
     def perform_create(self, serializer):
         user = serializer.save(is_active=True)
@@ -25,6 +31,7 @@ class UserListAPIView(ListAPIView):
     """
     serializer_class = UserSerializerLimited
     queryset = CustomUser.objects.all()
+    permission_classes = [IsModerator]
 
 
 class UserDetailAPIView(RetrieveAPIView):
@@ -33,6 +40,7 @@ class UserDetailAPIView(RetrieveAPIView):
     """
     serializer_class = UserSerializerLimited
     queryset = CustomUser.objects.all()
+    permission_classes = [IsModerator | IsOwner]
 
 
 class UserUpdateAPIView(UpdateAPIView):
@@ -41,6 +49,7 @@ class UserUpdateAPIView(UpdateAPIView):
     """
     serializer_class = UserSerializerLimited
     queryset = CustomUser.objects.all()
+    permission_classes = [IsOwner]
 
 
 class UserDeleteAPIView(DestroyAPIView):
@@ -49,6 +58,7 @@ class UserDeleteAPIView(DestroyAPIView):
     """
     serializer_class = UserSerializer
     queryset = CustomUser.objects.all()
+    permission_classes = [IsModerator]
 
 
 class PaymentsListAPiView(ListAPIView):
