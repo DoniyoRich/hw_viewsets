@@ -1,4 +1,3 @@
-from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
@@ -6,7 +5,7 @@ from config.constants import PAYMENT_TYPES
 from config.settings import AUTH_USER_MODEL
 from lms.models import Course, Lesson
 
-
+'''
 class CustomUserManager(BaseUserManager):
     def create_superuser(self, email, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', True)
@@ -27,6 +26,7 @@ class CustomUserManager(BaseUserManager):
         user.set_password(password)
         user.save()
         return user
+'''
 
 
 class CustomUser(AbstractUser):
@@ -58,7 +58,7 @@ class CustomUser(AbstractUser):
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 
-    objects = CustomUserManager()
+    # objects = CustomUserManager()
 
     class Meta:
         verbose_name = "Пользователь"

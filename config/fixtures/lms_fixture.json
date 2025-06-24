@@ -1,20 +1,12 @@
 [
 {
     "model": "lms.course",
-    "pk": 1,
-    "fields": {
-        "title": "Python разработчик",
-        "description": "Полный курс на Python разработчика",
-        "thumbnail": ""
-    }
-},
-{
-    "model": "lms.course",
     "pk": 2,
     "fields": {
         "title": "Java разработчик (middle)",
         "description": "Курс Java разработчик для продвинутых",
-        "thumbnail": ""
+        "thumbnail": "",
+        "owner": null
     }
 },
 {
@@ -23,18 +15,18 @@
     "fields": {
         "title": "C++ разработчик",
         "description": "Полный курс на C++ разработчика",
-        "thumbnail": ""
+        "thumbnail": "",
+        "owner": null
     }
 },
 {
-    "model": "lms.lesson",
-    "pk": 1,
+    "model": "lms.course",
+    "pk": 5,
     "fields": {
-        "title": "Введение в Python",
-        "description": "Начальный урок по python разработке",
+        "title": "Golang",
+        "description": "Язык программирования Golang",
         "thumbnail": "",
-        "video": null,
-        "course": 1
+        "owner": 1
     }
 },
 {
@@ -45,7 +37,8 @@
         "description": "Начальный урок по Java",
         "thumbnail": "",
         "video": null,
-        "course": 2
+        "course": 2,
+        "owner": null
     }
 },
 {
@@ -56,18 +49,8 @@
         "description": "В уроке приводится описание сфер, где применятся Java.",
         "thumbnail": "",
         "video": null,
-        "course": 2
-    }
-},
-{
-    "model": "lms.lesson",
-    "pk": 5,
-    "fields": {
-        "title": "Введение в C++",
-        "description": "Начальный урок по C++ разработке",
-        "thumbnail": "",
-        "video": null,
-        "course": 4
+        "course": 2,
+        "owner": null
     }
 }
 ]
