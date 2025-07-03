@@ -73,11 +73,19 @@ class Payment(models.Model):
     Модель платежей.
     """
     client = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="Плательщик")
-    date_paid = models.DateField(verbose_name="Дата платежа")
-    course_paid = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name="Оплаченный курс")
-    lesson_paid = models.ForeignKey(Lesson, on_delete=models.CASCADE, verbose_name="Оплаченный урок")
+    date_paid = models.DateField(verbose_name="Дата платежа", blank=True, null=True)
+    course_paid = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name="Оплаченный курс", blank=True,
+                                    null=True)
+    lesson_paid = models.ForeignKey(Lesson, on_delete=models.CASCADE, verbose_name="Оплаченный урок", blank=True,
+                                    null=True)
     amount = models.PositiveIntegerField(verbose_name="Сумма оплаты")
     type = models.CharField(max_length=30, choices=PAYMENT_TYPES, verbose_name="Способ оплаты")
+    session_id = models.CharField(max_length=255,
+                                  verbose_name='ID сессии',
+                                  blank=True, null=True)
+    link_to_payment = models.URLField(max_length=400,
+                                      verbose_name='Cсылка на оплату',
+                                      blank=True, null=True)
 
     class Meta:
         verbose_name = "Платеж"
