@@ -1,6 +1,7 @@
+from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 
-from lms.serializers import CourseSerializer, LessonSerializer
+from lms.models import Course, Lesson
 from users.models import CustomUser, Payment
 
 
@@ -31,9 +32,22 @@ class PaymentSerializer(ModelSerializer):
     """
     client = UserSerializer(read_only=True)
 
-    course_paid = CourseSerializer()
-    lesson_paid = LessonSerializer()
+    course_paid = serializers.PrimaryKeyRelatedField(queryset=Course.objects.all())
+    lesson_paid = serializers.PrimaryKeyRelatedField(
+        queryset=Lesson.objects.all(),
+        required=False,
+        allow_null=True
+    )
 
     class Meta:
         model = Payment
+        # fields = ("id", "course_paid", "lesson_paid", "amount", "date_paid", "type", "link_to_payment")
         fields = "__all__"
+        extra_kwargs = {
+            'client': {'required': False}
+        }
+
+    def validate(self, data):
+        if not data.get('course_paid') and not data.get('lesson_paid'):
+            raise serializers.ValidationError("Укажите курс или урок.")
+        return data
