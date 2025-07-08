@@ -92,6 +92,16 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+
+EMAIL_HOST = os.getenv("EMAIL_HOST")
+EMAIL_PORT = os.getenv("EMAIL_PORT")
+EMAIL_USE_SSL = os.getenv("EMAIL_USE_SSL") == "True"
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL")
+EMAIL_RECIPIENT = os.getenv("EMAIL_RECIPIENT")
+
 LANGUAGE_CODE = "ru"
 
 TIME_ZONE = "Europe/Moscow"
@@ -155,8 +165,8 @@ CELERY_TASK_TIME_LIMIT = 30 * 60
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 
 CELERY_BEAT_SCHEDULE = {
-    'some-task': {
-        'task': 'lms.tasks.some_task',
-        'schedule': timedelta(seconds=10),
+    'check-user-activity': {
+        'task': 'lms.tasks.check_user_activity',
+        'schedule': timedelta(days=1),
     },
 }
