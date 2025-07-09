@@ -55,9 +55,7 @@
         "avatar": "",
         "phone_number": "892680808080",
         "city": null,
-        "groups": [
-            1
-        ],
+        "groups": [],
         "user_permissions": []
     }
 },

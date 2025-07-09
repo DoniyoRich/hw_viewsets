@@ -1,6 +1,7 @@
 from celery import shared_task
 from django.core.mail import send_mail
 from celery.utils.log import get_task_logger
+from django.utils import timezone
 
 logger = get_task_logger(__name__)
 
@@ -40,4 +41,15 @@ def send_update_notification(course_id, course_title):
 
 @shared_task
 def check_user_activity():
-    pass
+    """
+    Задача запускается регулярно, проверяет всех пользователей в БД,
+    и если кто-то ни разу не логинился или заходил более 30 дней назад,
+    то этот пользователь блокируется.
+    """
+    users = CustomUser.objects.filter(is_active=True)
+    today = timezone.now()
+    no_active_period = 30  # в нашем случае это дни
+    for user in users:
+        if user.last_login is None or (today - user.last_login).days > no_active_period:
+            user.is_active = False
+            user.save()
