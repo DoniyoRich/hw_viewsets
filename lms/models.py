@@ -73,10 +73,11 @@ class Subscription(models.Model):
     Модель подписки на обновления курса.
     """
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
-                             blank=True, null=True, verbose_name="Пользователь"
+                             blank=True, null=True, verbose_name="Пользователь",
+                             related_name="subscriptions"
                              )
     course = models.ForeignKey(Course, on_delete=models.CASCADE, blank=True, null=True,
-                               verbose_name="Курс", related_name="subscription_course"
+                               verbose_name="Курс", related_name="subscribers"
                                )
 
     class Meta:

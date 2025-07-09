@@ -10,6 +10,7 @@ from lms.models import Course, Lesson, Subscription
 from lms.paginators import LMSPaginator
 from lms.serializers import (CourseSerializer, LessonSerializer,
                              SubscriptionSerializer)
+from lms.tasks import send_update_notification
 from users.permissions import IsModerator, IsOwner
 
 
@@ -29,12 +30,38 @@ class CourseViewSet(ModelViewSet):
         Модераторы могут смотреть и редактировать курсы, а создавать и удалять их не могут.
         """
         if self.action in ['list', 'retrieve', 'update', 'partial_update']:
-            self.permission_classes = [IsModerator | IsOwner]
+            # self.permission_classes = [IsModerator | IsOwner]
+            self.permission_classes = [AllowAny]
         elif self.action == 'create':
             self.permission_classes = [~IsModerator]
         elif self.action == 'destroy':
             self.permission_classes = [~IsModerator | IsOwner]
         return super().get_permissions()
+
+    def update(self, request, pk=None):
+        """
+        Метод вызывает отложенную задачу отправки уведомления на электронную почту пользователям,
+        подписавшимся на обновления курса.
+        """
+        response = super().update(request)
+        self._send_update_notification()
+        return response
+
+    def partial_update(self, request, pk=None):
+        """
+        Метод вызывает отложенную задачу отправки уведомления на электронную почту пользователям,
+        подписавшимся на обновления курса.
+        """
+        response = super().update(request)
+        self._send_update_notification()
+        return response
+
+    def _send_update_notification(self):
+        """
+        Внутренний метод для отправки уведомлений.
+        """
+        course = self.get_object()
+        send_update_notification.delay(course.id, course.title)
 
 
 class LessonListAPIView(ListAPIView):
